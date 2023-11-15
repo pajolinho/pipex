@@ -11,19 +11,23 @@ RM := rm -rf
 
 DEP := ./includes/pipex.h
 
-
-%.o: %.c $(DEP)
-	@$(CC) $(CFLAGS) $< -c -o $@ $(INCS)
+LIB := libft_all/libft_all.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) -o $@ $^
+%.o: %.c
+	@$(CC) $(CFLAGS) $< -c -o $@ $(INCS)
+
+$(NAME): $(OBJS) 
+	$(MAKE) -C libft_all
+	@$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) $(LIB) -o $(NAME)
 
 clean:
+	$(MAKE) clean -C libft_all
 	$(RM) $(OBJS)
 
 fclean: clean
+	$(MAKE) fclean -C libft_all
 	$(RM) $(NAME)
 
 re: fclean all
