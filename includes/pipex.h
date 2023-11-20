@@ -15,6 +15,8 @@ typedef struct	s_struct
 {
 	int	fd_if;
 	int fd_of;
+	char	**av1;
+	char	**av2;
 	char	**path;
 	char	*cmd1;
 	char	*cmd2;
@@ -25,10 +27,10 @@ typedef struct	s_struct
 int	ft_pipe_init(char *av[], t_struct *p_struct, char *envp[]);
 int	ft_exec(char *av[], t_struct *p_struct, char *envp[]);
 int	ft_child(t_struct *p_struct, int i);
-int	ft_parent(void);
-void	ft_execve(t_struct *p_struct, char *cmd);
+int	ft_parent(t_struct *p_struct);
 void	ft_close_all(t_struct *p_struct);
-
-
-
+void    error_h(char *error_msg, t_struct *p_struct);
+void    freeer(t_struct *p_struct);
+void    ft_init_all(t_struct *p_struct);
+void    ft_execve(t_struct *p_struct, char **av, char *cmd);
 #endif

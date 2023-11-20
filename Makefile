@@ -16,7 +16,7 @@ LIB := libft_all/libft_all.a
 all: $(NAME)
 
 %.o: %.c
-	@$(CC) $(CFLAGS) $< -c -o $@ $(INCS)
+	@$(CC) $(CFLAGS) $< -c -o $@ $(INCS) -g
 
 $(NAME): $(OBJS) 
 	$(MAKE) -C libft_all
